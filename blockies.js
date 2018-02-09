@@ -78,7 +78,7 @@
 		return newOpts;
 	}
 
-	function renderIcon(opts, canvas) {
+	function _renderIcon(opts, canvas) {
 		var imageData = createImageData(opts.size);
 		var width = Math.sqrt(imageData.length);
 
@@ -105,11 +105,17 @@
 		return canvas;
 	}
 
+	function renderIcon(opts, canvas) {
+        var opts = buildOpts(opts || {});
+
+        _renderIcon(opts, canvas);
+    }
+
 	function createIcon(opts) {
 		var opts = buildOpts(opts || {});
 		var canvas = document.createElement('canvas');
 
-		renderIcon(opts, canvas);
+		_renderIcon(opts, canvas);
 
 		return canvas;
 	}
